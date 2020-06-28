@@ -1,0 +1,5 @@
+{
+    "port":5000,
+    "jwtSecret": "chaika",
+    "mongo": "mongodb+srv://chaika:93855839Ff@chaikadb-imqsa.mongodb.net/test"
+}
