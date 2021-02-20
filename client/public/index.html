@@ -20,14 +20,12 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-
   <script>
     $(document).ready(function () {
       $('.sidenav').sidenav();
+      $('select').formSelect();
+      $('.dropdown-trigger').dropdown();
     });
-    $(document).ready(function(){
-        $('select').formSelect();
-      });
   </script>
    
 </body>
