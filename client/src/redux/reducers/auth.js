@@ -6,17 +6,22 @@ import {
     FETCH_LOGOUT_START,
     FETCH_LOGOUT_SUCCESS
 } from '../constans'
+import {getCookie} from "../../hooks/cookie";
+
+const profile = JSON.parse(localStorage.getItem('profile'))
 
 const initialState = {
     loading: false,
     error: null,
     profile: {
-        name: '',
-        surname: '',
-        age: '',
-        phone: '',
-        email: '',
-        birthday: ''
+        token: getCookie('token') || null,
+        userId: profile ? profile.userId : '',
+        name: profile ? profile.name : '',
+        surname: profile ? profile.surname : '',
+        age: profile ? profile.age : '',
+        phone: profile ? profile.phone : '',
+        email: profile ? profile.email : '',
+        birthday: profile ? profile.birthday : ''
     }
 }
 
@@ -30,6 +35,7 @@ export default function auth(state = initialState, action) {
             }
         case FETCH_LOGIN_SUCCESS:
             return {
+                ...state,
                 error: null,
                 loading: false,
                 profile: action.payload

@@ -22,9 +22,8 @@ export const fetchLoginError = (error) => ({
 export const fetchLogoutStart = () => ({
     type: FETCH_LOGOUT_START,
 })
-export const fetchLogoutSuccess = (payload) => ({
+export const fetchLogoutSuccess = () => ({
     type: FETCH_LOGOUT_SUCCESS,
-    payload
 })
 export const fetchLogoutError = (error) => ({
     type: FETCH_LOGOUT_ERROR,

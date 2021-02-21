@@ -4,18 +4,18 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import 'materialize-css'
 import Navbar from './components/Navbar';
 import Alert from "./hooks/message.hook";
+import {useSelector} from "react-redux";
 
 
 function App() {
-    // const { token, login, logout, userId, len, getLen } = useAuth()
-    // const isAuthentificated = !!token
-    // const routes = useRoutes(isAuthentificated)
-    const routes = useRoutes(false)
+    const isAuth = !!useSelector(store => store.authReducer.profile.token)
+
+    const routes = useRoutes(isAuth)
 
     return (
         <Router>
             <Alert/>
-            <Navbar isAuthentificated={false}/>
+            <Navbar/>
             <div className="container">
                 {routes}
             </div>

@@ -25,25 +25,22 @@ const LoginPage = () => {
     }
 
     return (
-        <div className="row center-align ">
+        <div className="row center-align">
             <div className="col l6 xl4 m6 s12 offset-l3 offset-xl4 offset-m3">
-                <h5>Авторизация/Регистрация</h5>
-                <div className="card blue darken-1 ">
+                <div className="card darken-1 ">
                     <div className="card-content white-text">
-                        <span className="card-title">Auth/Reg</span>
+                        <h5 className="card-title black-text">Авторизация/Регистрация</h5>
                         <div>
-
                             <div className="input-field">
-                                <input id="login" type="text" className="validate white-input" name="login"
+                                <input id="login" type="text" className="validate black-input" name="login"
                                        onChange={changeHandler}/>
                                 <label htmlFor="login">login</label>
                             </div>
                             <div className="input-field">
-                                <input id="password" type="password" className="validate white-input" name="password"
+                                <input id="password" type="password" className="validate black-input" name="password"
                                        onChange={changeHandler}/>
                                 <label htmlFor="password">password</label>
                             </div>
-
                         </div>
                     </div>
                     <div className="card-action">

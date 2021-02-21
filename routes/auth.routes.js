@@ -62,7 +62,6 @@ router.post(
         if (!user) {
             return res.status(400).json({ message: 'Такой пользователь не был найден' })
         }
-        console.log(user)
         const isMatch = await bcrypt.compare(password, user.password)
 
         if (!isMatch) {
@@ -74,7 +73,17 @@ router.post(
             config.get('jwtSecret'),
             { expiresIn: '60s' }
         )
-        res.json({ token, userId: user.id,message:`Вы авторизовались, ${login}` })
+        res.json({
+            token,
+            userId: user.id,
+            message:`Вы авторизовались, ${login}`,
+            name: 'Eduard',
+            surname: 'Chaika',
+            age: '22',
+            phone: '89896241895',
+            email: login,
+            birthday: '18.06.98'
+        })
 
     })
 
