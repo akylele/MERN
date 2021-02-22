@@ -4,7 +4,7 @@ import {
     FETCH_LOGIN_ERROR,
     FETCH_LOGOUT_ERROR,
     FETCH_LOGOUT_START,
-    FETCH_LOGOUT_SUCCESS,
+    FETCH_LOGOUT_SUCCESS, FETCH_EDIT_PROFILE_START, FETCH_EDIT_PROFILE_SUCCESS, FETCH_EDIT_PROFILE_ERROR,
 } from '../constans'
 
 export const fetchLoginStart = (form) => ({
@@ -27,5 +27,18 @@ export const fetchLogoutSuccess = () => ({
 })
 export const fetchLogoutError = (error) => ({
     type: FETCH_LOGOUT_ERROR,
+    error
+})
+
+export const fetchEditProfileStart = (form) => ({
+    type: FETCH_EDIT_PROFILE_START,
+    payload: form
+})
+export const fetchEditProfileSuccess = (payload) => ({
+    type: FETCH_EDIT_PROFILE_SUCCESS,
+    payload
+})
+export const fetchEditProfileError = (error) => ({
+    type: FETCH_EDIT_PROFILE_ERROR,
     error
 })

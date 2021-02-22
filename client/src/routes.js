@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 import LoginPage from './pages/LoginPage'
-
+import ProfilePage from './pages/ProfilePage'
 import LogoutPage from './pages/LogoutPage'
 
 
@@ -13,6 +13,9 @@ function useRoutes(isAuthentificated) {
             <Switch>
                 <Route path="/logout">
                     <LogoutPage />
+                </Route>
+                <Route path="/profile">
+                    <ProfilePage />
                 </Route>
                 <Redirect to="/" />
             </Switch>

@@ -5,7 +5,7 @@ import DropdownProfile from "./DropdownProfile";
 
 const Navbar = () => (
     <div>
-        <nav className="white">
+        <nav className="grey darken-3">
             <Sidenav/>
             <DropdownProfile/>
         </nav>

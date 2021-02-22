@@ -4,25 +4,24 @@ import {
     FETCH_LOGIN_ERROR,
     FETCH_LOGOUT_ERROR,
     FETCH_LOGOUT_START,
-    FETCH_LOGOUT_SUCCESS
+    FETCH_LOGOUT_SUCCESS, FETCH_EDIT_PROFILE_START, FETCH_EDIT_PROFILE_SUCCESS, FETCH_EDIT_PROFILE_ERROR
 } from '../constans'
-import {getCookie} from "../../hooks/cookie";
-
-const profile = JSON.parse(localStorage.getItem('profile'))
 
 const initialState = {
     loading: false,
     error: null,
-    profile: {
-        token: getCookie('token') || null,
-        userId: profile ? profile.userId : '',
-        name: profile ? profile.name : '',
-        surname: profile ? profile.surname : '',
-        age: profile ? profile.age : '',
-        phone: profile ? profile.phone : '',
-        email: profile ? profile.email : '',
-        birthday: profile ? profile.birthday : ''
-    }
+    profile: localStorage.getItem('profile') ?
+        JSON.parse(localStorage.getItem('profile')) :
+        {
+            token: null,
+            userId: '',
+            name: '',
+            surname: '',
+            age: '',
+            phone: '',
+            email: '',
+            birthday: ''
+        }
 }
 
 export default function auth(state = initialState, action) {
@@ -54,6 +53,24 @@ export default function auth(state = initialState, action) {
         case FETCH_LOGOUT_SUCCESS:
             return initialState
         case FETCH_LOGOUT_ERROR:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            }
+        case FETCH_EDIT_PROFILE_START:
+            return {
+                ...state,
+                loading: true
+            }
+        case FETCH_EDIT_PROFILE_SUCCESS:
+            return {
+                ...state,
+                profile: action.payload,
+                loading: false,
+                error: null
+            }
+        case FETCH_EDIT_PROFILE_ERROR:
             return {
                 ...state,
                 loading: false,

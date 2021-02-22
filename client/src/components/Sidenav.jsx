@@ -2,9 +2,10 @@ import React from 'react'
 import placeholderPhoto from "../images/sunset-scenery-minimal-4k-green.jpg";
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {getCookie} from "../hooks/cookie";
 
 const Sidenav = () => {
-    const isAuth = !!useSelector(store => store.authReducer.profile.token)
+    const isAuth = !!useSelector(store => store.authReducer.profile.token) || getCookie('token')
     const profile = useSelector(store => store.authReducer.profile)
 
     return (
@@ -33,10 +34,8 @@ const Sidenav = () => {
                 {/*</li>*/}
                 {/*<li><a className="subheader">Subheader</a></li>*/}
                 {/*<li><a className="waves-effect" href="#!">Third Link With Waves</a></li>*/}
-                {isAuth ? (
-                    <li><NavLink activeClassName="isActiveMobile" to="/logout">Выйти</NavLink></li>
-                ) : (
-                    <li><NavLink activeClassName="isActiveMobile" to="/login">Войти</NavLink></li>
+                {isAuth && (
+                    <li><NavLink activeClassName="isActiveMobile" className="sidenav-close" to="/logout">Выйти</NavLink></li>
                 )}
             </ul>
             <a href="#" data-target="slide-out" className="sidenav-trigger"><i

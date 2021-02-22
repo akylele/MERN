@@ -8,7 +8,7 @@ import {fetchRegisterStart} from "../redux/actions/register";
 const LoginPage = () => {
     const dispatch = useDispatch()
     const [form, setForm] = useState({
-        login: '',
+        email: '',
         password: ''
     })
 
@@ -32,9 +32,9 @@ const LoginPage = () => {
                         <h5 className="card-title black-text">Авторизация/Регистрация</h5>
                         <div>
                             <div className="input-field">
-                                <input id="login" type="text" className="validate black-input" name="login"
+                                <input id="email" type="text" className="validate black-input" name="email"
                                        onChange={changeHandler}/>
-                                <label htmlFor="login">login</label>
+                                <label htmlFor="email">email</label>
                             </div>
                             <div className="input-field">
                                 <input id="password" type="password" className="validate black-input" name="password"
@@ -44,8 +44,8 @@ const LoginPage = () => {
                         </div>
                     </div>
                     <div className="card-action">
-                        <button onClick={loginHandler} className="btn yellow darken-4 marginright">Войти</button>
-                        <button onClick={registerHandler} className="btn grey lighten-1  white-text">регистрация
+                        <button onClick={loginHandler} className="btn yellow darken-4">Войти</button>
+                        <button onClick={registerHandler} className="btn grey darken-3  white-text">Регистрация
                         </button>
                     </div>
                 </div>
