@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import placeholderPhoto from "../images/sunset-scenery-minimal-4k-green.jpg";
 import {fetchEditProfileStart} from "../redux/actions/auth";
+import Carousel from '../components/Profile/Carousel'
 
 const types = {
     READ: 'read',
@@ -43,22 +43,23 @@ const ProfilePage = () => {
 
     const handleConfirm = () => {
         dispatch(fetchEditProfileStart(form))
+        setType(types.READ)
     }
-    console.log(form)
+
     return (
-        <div className="profile">
+        <div className="profile-container">
             <div className="row" style={{
                 margin: '40px 0'
             }}>
                 <div className="col l4 xl4 m6 s12">
                     <div className="profile__image"/>
                 </div>
-                <div className="col l8 xl6 m12 s12">
+                <div className="col l8 xl8 m12 s12">
                     <div className="row">
                         <div className="input-field col l4 xl4 m4 s12">
                             <input id="name"
                                    type="text"
-                                   className="validate black-input"
+                                   className="validate black-input white-text"
                                    name="name"
                                    defaultValue={profile.name}
                                    disabled={disabledInputs}
@@ -69,7 +70,7 @@ const ProfilePage = () => {
                             <input
                                 id="surname"
                                 type="text"
-                                className="validate black-input"
+                                className="validate black-input white-text"
                                 name="surname"
                                 defaultValue={profile.surname}
                                 disabled={disabledInputs}
@@ -80,7 +81,7 @@ const ProfilePage = () => {
                             <input
                                 id="age"
                                 type="number"
-                                className="validate black-input"
+                                className="validate black-input white-text"
                                 name="age"
                                 defaultValue={profile.age}
                                 disabled={disabledInputs}
@@ -93,7 +94,7 @@ const ProfilePage = () => {
                             <input
                                 id="email"
                                 type="text"
-                                className="validate black-input"
+                                className="validate black-input white-text"
                                 name="email"
                                 defaultValue={profile.email}
                                 disabled={disabledInputs}
@@ -104,7 +105,7 @@ const ProfilePage = () => {
                             <input
                                 id="phone"
                                 type="text"
-                                className="validate black-input"
+                                className="validate black-input white-text"
                                 name="phone"
                                 defaultValue={profile.phone}
                                 disabled={disabledInputs}
@@ -115,7 +116,7 @@ const ProfilePage = () => {
                             <input
                                 id="birthday"
                                 type="date"
-                                className="validate black-input"
+                                className="validate black-input white-text"
                                 name="birthday"
                                 defaultValue={profile.birthday}
                                 disabled={disabledInputs}
@@ -136,7 +137,7 @@ const ProfilePage = () => {
                             <span
                                 className="btn red darken-4"
                             >
-                                Удалить профиль
+                                Удалить
                             </span>
                         </div>
                         <div className="col l4 xl4 m4 s12">
@@ -151,7 +152,7 @@ const ProfilePage = () => {
                     </div>
                 </div>
             </div>
-
+            <Carousel profile={profile}/>
         </div>
     )
 }

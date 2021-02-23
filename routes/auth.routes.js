@@ -31,10 +31,10 @@ router.post(
 
         const hashedPW = await bcrypt.hash(password, 12)
         const user = new User({
+            createdAt: Date.now(),
             email,
             password: hashedPW
         })
-
         await user.save()
         res.status(201).json({message: 'Пользователь был создан'})
 
@@ -69,7 +69,7 @@ router.post(
             age,
             phone,
             email,
-            photo
+            createdAt
         } = user
         const isMatch = await bcrypt.compare(req.body.password, user.password)
 
@@ -92,7 +92,7 @@ router.post(
             phone,
             email,
             birthday,
-            photo
+            createdAt
         })
 
     })
@@ -145,6 +145,7 @@ router.post(
                     password: user.password,
                     phone: user.phone,
                     surname: user.surname,
+                    createdAt: user.createdAt,
                     message: 'Успешное изменение'
                 })
             })

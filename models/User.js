@@ -25,18 +25,10 @@ const schema = new Schema({
     birthday: {
         type: String,
     },
-    photo: {
-        type: String,
+    createdAt: {
+        required: true,
+        type: Date,
     }
 })
 
 module.exports = model('User', schema)
-
-
-// userId: profile ? profile.userId : '',
-//     name: profile ? profile.name : '',
-//     surname: profile ? profile.surname : '',
-//     age: profile ? profile.age : '',
-//     phone: profile ? profile.phone : '',
-//     email: profile ? profile.email : '',
-//     birthday: profile ? profile.birthday : ''
