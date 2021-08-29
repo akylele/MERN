@@ -7,9 +7,6 @@ import DelTarifsPage from './pages/DelTarifsPage'
 import LogoutPage from './pages/LogoutPage'
 import TarifSelectionPage from './pages/TarifSelectionPage'
 
-import Loading2 from './components/Loading2'
-
-
 function useRoutes(isAuthentificated) {
     if (isAuthentificated) {
         return (
@@ -35,9 +32,6 @@ function useRoutes(isAuthentificated) {
     }
     return (
         <Switch>
-            <Route path="/loading">
-                <Loading2 />
-            </Route>
             <Route path="/tarifs">
                 <TarifsPage />
             </Route>

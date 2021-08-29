@@ -166,7 +166,10 @@ router.post('/pick_up', async (req, res) => {
 
 
         const tarifs = await Tarif.find({
-            Price: { $gte: price1, $lte: price2 },
+            Price: {
+                $gte: price1,
+                $lte: price2
+            },
             MBInternet: { $gte: internet1, $lte: internet2 },
             MBMinutes: { $gte: minutes1, $lte: minutes2 },
             MBSms: { $gte: sms1, $lte: sms2 },
@@ -183,7 +186,5 @@ router.post('/pick_up', async (req, res) => {
         res.status(500).json({ message: 'Тариф не подбирается', error: e.message })
     }
 })
-
-
 
 module.exports = router

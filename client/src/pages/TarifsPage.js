@@ -21,18 +21,13 @@ export default function TarifsPage() {
         getTarifs()
     },[])
 
-
-    
     if(loading){
         return <Loading />
     }
-
-
 
     return (
         <>
         {!loading && <TarifBlock tarifs={tarifs}/>}
         </>
     )
-
 }

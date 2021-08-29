@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import $ from 'jquery'
 import { useHttp } from '../hooks/http.hook'
 import { useMessage } from '../hooks/message.hook'
 import Loading from '../components/Loading'
 
-
-
 export default function TarifSelectionPage() {
     const { request, loading } = useHttp()
     const message = useMessage()
     const [tarifs, setTarifs] = useState('')
-    // const [regions, setRegions] = useState([])
 
     function checkHandler(a) {
         const parent = $(a).parents('.row').eq(0)
@@ -25,6 +22,7 @@ export default function TarifSelectionPage() {
             $(input2).prop('disabled', true)
         }
     }
+
     $('input[type="number"]').keydown((e) => {
         if ((e.which >= 48 && e.which <= 57)  // цифры
             || (e.which >= 96 && e.which <= 105)  // num lock
@@ -61,47 +59,30 @@ export default function TarifSelectionPage() {
             let dataForm = $('form').serializeArray()
             let response = await request('/api/tarifs/pick_up', 'POST', dataForm)
             message(response.message)
+
             if (response.tarifs) {
                 let title = `<h5>Если тарифов несколько, тогда тарифы будут показаны по порядку по вашим предпочтениям</h5>`
                 $('.div_pick .row').append(title)
                 response.tarifs.map((tarif) => {
-                    let Description, MBInternet, MBMinutes, MBSms, HISpeed, TChannels = null
-                    if (tarif.Description) {
-                        Description = `<h5>${tarif.Description}</h5>`
-                    } else { Description = `` }
-                    if (tarif.MBInternet) {
-                        MBInternet = `<div>Количество трафика: ${tarif.MBInternet}</div>`
-                    } else { MBInternet = `` }
-                    if (tarif.MBMinutes) {
-                        MBMinutes = `<div>Количество минут: ${tarif.MBMinutes}</div>`
-                    } else { MBMinutes = `` }
-                    if (tarif.MBSms) {
-                        MBSms = `<div>Количество SMS: ${tarif.MBSms}</div>`
-                    } else { MBSms = `` }
-                    if (tarif.HISpeed) {
-                        HISpeed = `<div><h5>Домашний интернет</h5><div>Скорость: ${tarif.HISpeed}</div></div>`
-                    } else { HISpeed = `` }
-                    if (tarif.TChannels) {
-                        TChannels = `<div><h5>Телевидение</h5><div>Количество каналов: ${tarif.TChannels}</div></div>`
-                    } else { TChannels = `` }
-                    let str = `
-                                <div class="col s12 m6 l6 xl3" key=${tarif._id} id=${tarif._id}>
+                    const {Description, MBInternet, MBMinutes, MBSms, HISpeed, TChannels, Price, Name, _id} = tarif
+                    let block = `
+                                <div class="col s12 m6 l6 xl3" key=${_id} id=${_id}>
                                 <div class="card gray hoverable ">
                                     <div class="card-content black-text" >
-                                        <span class="card-title">${tarif.Name}</span><hr></hr>
-                                        ${Description}
-                                        <div>Цена: ${tarif.Price}</div>
-                                        ${MBInternet}
-                                        ${MBMinutes}
-                                        ${MBSms}
-                                        ${HISpeed}
-                                        ${TChannels}
+                                        <span class="card-title">${Name}</span><hr></hr>
+                                        ${Description && <h5>${Description}</h5>}
+                                        <div>Цена: ${Price}</div>
+                                        ${MBInternet && <div>Количество трафика: ${MBInternet}</div>}
+                                        ${MBMinutes && <div>Количество минут: ${MBMinutes}</div>}
+                                        ${MBSms && <div>Количество SMS: ${MBSms}</div>}
+                                        ${HISpeed && <div><h5>Домашний интернет</h5><div>Скорость: ${HISpeed}</div></div>}
+                                        ${TChannels && <div><h5>Телевидение</h5><div>Количество каналов: ${TChannels}</div></div>}
                                     </div>
                                     <div class="card-action">
                                     <button class="btn liked blue">Нажмите, если подходит</button>
                                     </div>
                             </div>`
-                    $('.div_pick .row').append(str)
+                    $('.div_pick .row').append(block)
 
                 })
             }
@@ -111,19 +92,6 @@ export default function TarifSelectionPage() {
             message('Заполните данные')
         }
     }
-
-    // async function takeRegions() {
-    //     fetch('http://www.json-generator.com/api/json/get/bOISSukaKW?indent=2')
-    //         .then(response => response.json()) // преобразуем ответ в json
-    //         .then(data => {
-    //             setRegions(data)
-    //         })
-    //         .catch(error => console.error(error))
-    // }
-    // useEffect(() => {
-    //     takeRegions()
-    // }, [])
-
 
     if (loading) {
         return <Loading />
@@ -143,18 +111,6 @@ export default function TarifSelectionPage() {
                         <label htmlFor="price2">Цена до:</label>
                     </div>
                 </div>
-                {/* < div className="row">
-                    <label>Регион</label>
-                    <select className="browser-default">
-                        <option value="" disabled selected>Необходимо выбрать</option>
-                        {regions.map((reg, index) => {
-                            console.log(reg)
-                            return (
-                                <option value={index + 1} key={reg.id}>{reg.title}</option>
-                            )
-                        })}
-                    </select>
-                </div> */}
                 <h5>Мобильная связь</h5>
                 <div className="row">
                     <div className="input-field col s1">

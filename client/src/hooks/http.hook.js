@@ -1,9 +1,6 @@
 import { useState, useCallback, useContext } from 'react'
 import AuthContext from '../context/auth.context'
 
-
-
-
 export const useHttp = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -28,6 +25,7 @@ export const useHttp = () => {
 
             setLoading(false)
             auth.getLen()
+
             return data
         } catch (e) {
             setLoading(false)

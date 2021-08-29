@@ -1,14 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+
 import { useHttp } from '../hooks/http.hook'
 import { useMessage } from '../hooks/message.hook'
 import { useHistory } from 'react-router-dom'
 
-
-
-
 export default function CreatePage() {
-
     const history = useHistory()
     const message = useMessage()
     const { request, error, clearError } = useHttp()
@@ -41,15 +38,8 @@ export default function CreatePage() {
         } catch (e) { }
     }
 
-
-
-
-
-
-
     return (
         <div>
-
             <h4>Создать тариф</h4>
             <div className="row">
                 <form className="col s12">

@@ -1,15 +1,17 @@
 import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
+
 import AuthContext from '../context/auth.context'
+
 export default function LogoutPage() {
     const history = useHistory()
     const auth = useContext(AuthContext)
+
     const logoutHandler = event => {
         event.preventDefault()
         auth.logout()
         history.push('/')
     }
-
 
     return (
         <div className="center center-align">

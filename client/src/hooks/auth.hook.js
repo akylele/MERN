@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-import { useHttp } from '../hooks/http.hook'
-
+import { useHttp } from './http.hook'
 
 export default function useAuth() {
     const [userId, setUserId] = useState(null)
@@ -16,8 +15,6 @@ export default function useAuth() {
     useEffect(() => {
         getLen()
     }, [getLen])
-
-
 
     const login = useCallback((jwtToken, id) => {
         setToken(jwtToken)
@@ -42,13 +39,5 @@ export default function useAuth() {
         }
     }, [login])
 
-
-
-
-
-
-
-
     return { login, logout, token, userId, len,getLen }
-
 }

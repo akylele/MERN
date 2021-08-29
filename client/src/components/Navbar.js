@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+
 import AuthContext from '../context/auth.context'
 
 function Navbar({ isAuthentificated }) {
@@ -7,21 +8,6 @@ function Navbar({ isAuthentificated }) {
 
     if (!isAuthentificated) {
         return (
-            // <nav>
-            //     <div className="nav-wrapper blue">
-            //         <a href="/" className="brand-logo left marginleft">MERN</a>
-            //         <ul className="right mobile-nav">
-            //             <li onClick={open_menu}><i class="medium material-icons">menu</i></li>
-            //         </ul>
-            //         <ul id="nav-mobile" className="right hide-on-med-and-down">
-            //             <li><NavLink activeClassName="isActive" to="/loading">Loading</NavLink></li>
-            //             <li><NavLink activeClassName="isActive" to="/statistic">Статистика</NavLink></li>
-            //             <li><NavLink activeClassName="isActive" to="/select">Подобрать тариф</NavLink></li>
-            //             <li><NavLink activeClassName="isActive" to="/tarifs">Тарифы ({auth.len})</NavLink></li>
-            //             <li><NavLink activeClassName="isActive" to="/auth">Войти</NavLink></li>
-            //         </ul>
-            //     </div>
-            // </nav>
             <div>
                 <nav>
                     <div className="nav-wrapper blue">
